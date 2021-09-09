@@ -18,6 +18,12 @@ class Department
     @employees << employee
   end
 
+  def employee_names
+    @employees.map do |employee|
+      employee.name
+    end
+  end
+  
   def expense(charge)
     @expenses += charge
   end
