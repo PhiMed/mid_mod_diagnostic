@@ -1,48 +1,32 @@
-require './lib/player'
-require './lib/team'
+require './lib/employee'
+require './lib/department'
 
-RSpec.describe Team do
-
+RSpec.describe Department do
   it 'exists' do
-    team = Team.new("France")
-    expect(team).to be_an_instance_of(Team)
+    customer_service = Department.new("Customer Service")
+    expect(customer_service).to be_an_instance_of(Department)
   end
 
-  it 'has accessible attributes' do
-    team = Team.new("France")
-    expect(team.country).to eq "France"
+  it 'has attributes' do
+    customer_service = Department.new("Customer Service")
+    expect(customer_service.name).to eq("Customer Service")
+    expect(customer_service.employees).to eq([])
   end
 
-  it 'is not eliminated by default' do
-    team = Team.new("France")
-    expect(team.eliminated?).to eq false
+  it 'can hire people and add to employees array' do
+    customer_service = Department.new("Customer Service")
+    bobbi = Employee.new({name: "Bobbi Jaeger", age: "30", salary: "100000"})
+    aaron = Employee.new({name: "Aaron Tanaka", age: "25", salary: "90000"})
+    customer_service.hire(bobbi)
+    customer_service.hire(aaron)
+    expect(customer_service.employees).to eq([bobbi, aaron])
   end
 
-  it 'can change elimination status' do
-    team = Team.new("France")
-    team.eliminated = true
-    expect(team.eliminated?).to eq true
+  it 'can track and add expenses' do
+    customer_service = Department.new("Customer Service")
+    expect(customer_service.expenses).to eq(0)
+    customer_service.expense(100)
+    customer_service.expense(25)
+    expect(customer_service.expenses).to eq(125)
   end
-
-  it 'can add players' do
-    team = Team.new("France")
-    expect(team.players).to eq []
-    mbappe = Player.new({name: "Kylian Mbappe", position: "forward"})
-    pogba = Player.new({name: "Paul Pogba", position: "midfielder"})
-    team.add_player(mbappe)
-    team.add_player(pogba)
-    expect(team.players).to eq [mbappe, pogba]
-  end
-
-  it 'can return players by position' do
-    team = Team.new("France")
-    mbappe = Player.new({name: "Kylian Mbappe", position: "forward"})
-    pogba = Player.new({name: "Paul Pogba", position: "midfielder"})
-    team.add_player(mbappe)
-    team.add_player(pogba)
-    expect(team.players_by_position("midfielder")).to eq [pogba]
-    expect(team.players_by_position("defender")).to eq []
-  end
-
-
 end

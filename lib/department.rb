@@ -1,28 +1,24 @@
-class Team
-  attr_reader :country,
-              :players,
-              :players_by_position
+class Department
+  attr_reader :name,
+              :employees
 
-  attr_accessor :eliminated
+  attr_accessor :expenses
 
-  def initialize(country, eliminated = false)
-    @country = country
-    @eliminated = eliminated
-    @players = []
-    @players_by_position
+  def initialize(name)
+    @name = name
+    @employees = []
+    @expenses = 0
   end
 
-  def eliminated?
-    @eliminated
+  def employees
+    @employees
   end
 
-  def add_player(player)
-    @players << player
+  def hire(employee)
+    @employees << employee
   end
 
-  def players_by_position(position)
-    @players.find_all do |player|
-      player.position == position
-    end
+  def expense(charge)
+    @expenses += charge
   end
 end

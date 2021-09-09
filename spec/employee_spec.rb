@@ -1,15 +1,16 @@
-require './lib/player'
+require './lib/employee'
 
-RSpec.describe Player do
+RSpec.describe Employee do
 
   it 'exists' do
-    player = Player.new({name: "Luka Modric", position: "midfielder"})
-    expect(player).to be_an_instance_of(Player)
+    bobbi = Employee.new({name: "Bobbi Jaeger", age: "30", salary: "100000"})
+    expect(bobbi).to be_an_instance_of(Employee)
   end
 
   it 'has accessible attributes' do
-    player = Player.new({name: "Luka Modric", position: "midfielder"})
-    expect(player.name).to eq "Luka Modric"
-    expect(player.position).to eq "midfielder"
+    bobbi = Employee.new({name: "Bobbi Jaeger", age: "30", salary: "100000"})
+    expect(bobbi.name).to eq "Bobbi Jaeger"
+    expect(bobbi.age).to eq 30
+    expect(bobbi.salary).to eq 100000
   end
 end
