@@ -6,6 +6,6 @@ class Employee
   def initialize(attributes)
     @name = attributes[:name]
     @age = attributes[:age].to_i
-    @salary = attributes[:salary].to_i 
+    @salary = attributes[:salary].to_i
   end
 end
